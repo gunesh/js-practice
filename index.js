@@ -188,3 +188,9 @@ let dummyString = 'Hello Javascript- "This language" is very popular."'
 let finalString = dummyString.replace(/["]+/g, '')
 console.log("original string: " + dummyString)
 console.log("final string: " + finalString)
+
+var rrt = 'Product = "abcd def"';
+var query1 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
+var query2 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
+var query3 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
+console.log(query1,query2,query3);
