@@ -190,7 +190,9 @@ console.log("original string: " + dummyString)
 console.log("final string: " + finalString)
 
 var rrt = 'Product = "abcd def"';
-var query1 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
-var query2 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
-var query3 = rrt.replace('/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g', '~');
-console.log(query1,query2,query3);
+var query1 = rrt.replace(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g, '1');
+console.log(query1);
+// var query2 = rrt.replace(/(?:[^\s"]+|"[^"]*")+/g, '2');
+// console.log(query2);
+// var query3 = rrt.replace(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g, '3');
+// console.log(query3);
