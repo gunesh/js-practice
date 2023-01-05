@@ -131,3 +131,60 @@ const rr = test.reduce((r, o, currentIndex, array) => {
 }, []);
 
 console.log('result', rr);
+
+var newQueryArray = ['Product', '=', '"amazon ddd"', ''];
+var queryArray = ['Product', '=', '"amazon ddd"'];
+
+const getQueryArrayByQuery = (query) => {
+  console.log('query', query);
+  const finalQueryArray = [];
+  const wordsWithQuotesAndSpace = query.match(/'.*?'/g);
+  const queryArrayBySpace = query.match(/(?:[^\s"]+|"[^"]*")+/g); // query.replace(/'.*?'/g, '$').split(' ');
+  let spaceWordIndex = 0;
+  queryArrayBySpace.forEach((element) => {
+    let currentW = '';
+    for (const char of element) {
+      if (char === '$') {
+        currentW += wordsWithQuotesAndSpace[spaceWordIndex];
+        spaceWordIndex++;
+      } else currentW += char;
+    }
+    finalQueryArray.push(currentW);
+  });
+  console.log('GUN', wordsWithQuotesAndSpace, finalQueryArray);
+  return finalQueryArray;
+};
+
+const modifiedWordIndex = newQueryArray.findIndex((newElement, index) => {
+  // console.log(
+  //   'GET:',
+  //   newElement,
+  //   getQueryArrayByQuery(queryArray.join(' ').replace(/  +/g, ' '))[index]
+  // );
+  return (
+    newElement !==
+    getQueryArrayByQuery(queryArray.join(' ').replace(/  +/g, ' '))[index]
+  );
+});
+console.log('modifiedWordIndex', modifiedWordIndex);
+var str = 'Product = "amazon ddd"';
+console.log(str.split(' '), str.match(/(?:[^\s"]+|"[^"]*")+/g));
+// console.log(['Product', '=', '"abc def"'].join(' '));
+
+// console.log(['Product', '=', '"amazon ddd"'].join(' ').replace(/  +/g, ' '));
+
+const inputd = `hello,"sai,sur",ya,teja`,
+const inputd2 = `hello,'sai,sur',ya,teja`,
+  const output3 = inputd.replace(/"([^"]+)"/g, (_, g) => g.replace(',', '-'));
+  const output = output3.replace(/"([^']+)"/g, (_, g) => g.replace(',', '-'));
+
+// console.log(output3.split(','));
+console.log(output.split(','));
+
+console.log(inputd.replace(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g,'T'));
+// (".*?"|[^"\s]+)+(?=\s*|\s*$)
+
+let dummyString = 'Hello Javascript- "This language" is very popular."'
+let finalString = dummyString.replace(/["]+/g, '')
+console.log("original string: " + dummyString)
+console.log("final string: " + finalString)
