@@ -189,7 +189,7 @@ let finalString = dummyString.replace(/["]+/g, '')
 console.log("original string: " + dummyString)
 console.log("final string: " + finalString)
 
-var rrt = 'Product = "abcd def"';
+var rrt = 'Product = "abcd def" AND Product = "abcd def"';
 // var query1 = rrt.replace(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g, '1');
 // console.log(query1);
 // var query2 = rrt.replace(/(?:[^\s"]+|"[^"]*")+/g, '2');
@@ -198,6 +198,11 @@ var rrt = 'Product = "abcd def"';
 // console.log(query3);
 
 
-var outputn = rrt.replace(/"([^"]+)"/g, (_, g) => g.replace(',', '-'))
+// var outputn = rrt.replace(/"([^"]+)"/g, (_, g) => g.replace(' ', '~'))
 
-console.log(output)
+// console.log('d',outputn)
+console.log(rrt.replace(/"/g,"_"));
+console.log(rrt.replace(/"([^"]+)"/g, (_, g) => {
+  return g.replace(' ', '~')
+}));
+
